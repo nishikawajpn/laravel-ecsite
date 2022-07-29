@@ -20,19 +20,21 @@ class LifeCycleTestController extends Controller
         app()->bind('lifeCycleTest', function(){
             return 'ライフサイクルのテスト';
         });
-
         $test = app()->make('lifeCycleTest');
 
 
-        $message = new Message();
-        $sample = new Sample($message);
-        $sample->run();
+        // サービスコンテナなし
+        // $message = new Message();
+        // $sample = new Sample($message);
+        // $sample->run();
 
+        // サービスコンテナあり
         app()->bind('sample', Sample::class);
         $sample = app()->make('sample');
         $sample->run();
 
-        dd($test, app());
+        // dd($test, app());
+        dd(app());
     }
 }
 
